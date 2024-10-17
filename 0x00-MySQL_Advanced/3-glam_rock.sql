@@ -1,16 +1,13 @@
--- A SQL script that lists all bands with Glam rock as their main style, ranked by their longevity
--- Calculating lifespan in years, until 2022 (or the split year, if applicable)
-
-SELECT
+-- Select all bands with Glam rock as their main style, ranked by longevity
+SELECT 
     band_name,
-    CASE
-        -- If the band has split, calculate lifespan using the split year
-        WHEN split IS NOT NULL THEN (split - formed)
-        ELSE (2022 - formed)
+    CASE 
+        WHEN split IS NULL THEN 2022 - formed
+        ELSE split - formed
     END AS lifespan
 FROM
-    metal_bands
+    bands
 WHERE
-    style = 'Glam rock'
+    main_style = 'Glam rock'
 ORDER BY
     lifespan DESC;
