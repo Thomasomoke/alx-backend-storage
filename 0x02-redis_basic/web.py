@@ -25,7 +25,7 @@ def cache_page(method):
 
         # Call the original method if not cached
         response = method(url)
-        redis_client.setex(cache_key, 10, response)  # Cache result for 10 seconds
+        redis_client.setex(cache_key, 10, response)
         redis_client.incr(count_key)  # Increment access count
 
         return response
@@ -43,6 +43,7 @@ def get_page(url: str) -> str:
 
 if __name__ == "__main__":
     # Test the get_page function
-    url = "http://slowwly.robertomurray.co.uk/delay/3000/url/http://example.com"
+    url =
+    "http://slowwly.robertomurray.co.uk/delay/3000/url/http://example.com"
     print(get_page(url))  # First call, fetches and caches the result
     print(get_page(url))  # Second call, returns cached result
